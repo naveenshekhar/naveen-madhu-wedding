@@ -892,7 +892,7 @@ body{font-size:17px}
     </svg>
   </button>
   <button class="melody-select-btn" id="melodySelectBtn" type="button" aria-haspopup="dialog" aria-expanded="false" title="Switch wedding melody">
-    <span class="melody-name" id="melodyNameDisplay">వచ్చిందమ్మా</span>
+    <span class="melody-name" id="melodyNameDisplay">शाही शहनाई</span>
     <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
   </button>
 </div>
@@ -1184,6 +1184,12 @@ document.querySelectorAll('[data-orn]').forEach(el=>el.innerHTML=ICON[el.dataset
    ====================================================================== */
 const MELODIES = [
   {
+    id: "shehnai",
+    title: "शाही शहनाई",
+    tag: "Traditional Auspicious Instrumental (Hindi)",
+    src: "assets/audio/wedding-music.mp3"
+  },
+  {
     id: "vachindamma",
     title: "వచ్చిందమ్మా",
     tag: "Romantic Wedding Song (Telugu)",
@@ -1194,18 +1200,13 @@ const MELODIES = [
     title: "এলো এলো",
     tag: "Romantic Wedding Melody (Bengali)",
     src: "assets/audio/elo-elo.mp3"
-  },
-  {
-    id: "shehnai",
-    title: "शाही शहनाई",
-    tag: "Traditional Auspicious Instrumental (Hindi)",
-    src: "assets/audio/wedding-music.mp3"
   }
 ];
 
-let currentTrackIndex = 0;
+let currentTrackIndex = 0; // Default: शाही शहनाई
 try {
-  const savedTrack = localStorage.getItem('nm-wedding-melody');
+  localStorage.removeItem('nm-wedding-melody');
+  const savedTrack = sessionStorage.getItem('nm-wedding-melody');
   const foundIdx = MELODIES.findIndex(m => m.id === savedTrack);
   if (foundIdx !== -1) currentTrackIndex = foundIdx;
 } catch(e) {}
@@ -1291,7 +1292,7 @@ function switchTrack(idx) {
   const wasPlaying = !bgm.paused;
   currentTrackIndex = idx;
   const cur = MELODIES[idx];
-  try { localStorage.setItem('nm-wedding-melody', cur.id); } catch(e) {}
+  try { sessionStorage.setItem('nm-wedding-melody', cur.id); } catch(e) {}
   updateTrackUI();
 
   // Crossfade switch
@@ -1442,6 +1443,8 @@ env.addEventListener('click',reveal);
 $('#replay').addEventListener('click',()=>{
   opened=false; env.classList.remove('opening'); document.documentElement.classList.remove('revealed');
   opener.hidden=false; setSiteHidden(true); document.body.classList.add('locked'); musicPill.hidden=true; pauseMusic();
+  try { sessionStorage.removeItem('nm-wedding-melody'); } catch(e) {}
+  switchTrack(0);
   env.querySelectorAll('.tap-glow,.pearl-ring').forEach(n=>{n.style.animation='none';n.offsetWidth;n.style.animation=''});
   env.focus();
 });
