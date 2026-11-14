@@ -1,0 +1,11 @@
+{
+  "name": "my-wedding-invitation",
+  "version": "1.0.0",
+  "description": "My Wedding Invitation — Royal interactive wedding invitation for Naveen Shekhar & Madhu Kumari",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000"
+  },
+  "author": "Naveen Shekhar",
+  "license": "MIT"
+}

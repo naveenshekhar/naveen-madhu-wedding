@@ -1,15 +1,38 @@
-# Naveen & Madhu — Royal Wedding Invitation Web App
+# My Wedding Invitation — Naveen & Madhu
 
-A royal, interactive Indian wedding invitation website built with high-fidelity animations, 3D room tilt effects, envelope reveal animation, ambient shehnai/wedding background audio, and day-by-day ceremony details.
+A royal, interactive Indian wedding invitation website built with high-fidelity animations, 3D room tilt effects, envelope reveal animation, trilingual background music selection (Hindi, Telugu, Bangla), and day-by-day ceremony details.
 
-Modeled after [Unati & Varish Invitation](https://unatiinvite.vercel.app/) and customized for **Naveen Shekhar & Madhu Kumari**.
+Customized for **Naveen Shekhar & Madhu Kumari**.
+
+---
+
+## 📁 Project Structure
+
+```
+my-wedding-invitation/
+├── index.html              # Clean semantic HTML markup & structure
+├── package.json            # Project metadata & npm scripts
+├── vercel.json             # Vercel deployment configuration
+├── README.md               # Documentation & setup guide
+└── assets/
+    ├── css/
+    │   └── style.css       # Full stylesheet (typography, animations, responsive layout)
+    ├── js/
+    │   ├── config.js       # Wedding details, ceremony itinerary, and playlist data
+    │   └── main.js         # Interactive engine (envelope, audio player, modal, carousel, countdown)
+    ├── audio/
+    │   ├── wedding-music.mp3  # शाही शहनाई (Hindi) - Auspicious Royal Shehnai
+    │   ├── vachindamma.mp3    # వచ్చిందమ్మా (Telugu) - Romantic Wedding Melody
+    │   └── elo-elo.mp3        # এলো এলো (Bangla) - Festive Wedding Song
+    └── images/             # Visual assets, textures, illustrations, and couple photos
+```
 
 ---
 
 ## 🌟 Key Features
 * 💌 **Interactive Envelope Opening:** Tap-to-open envelope animation with wax seal and pearl ring glow.
-* 🎵 **Royal Ambient Audio:** Plays romantic Indian instrumental/shehnai music automatically upon opening with an interactive floating play/pause control.
-* 🕉️ **Traditional Auspicious Shloka & Kalash:** *॥ ॐ श्री गणेशाय नमः ॥* and *शुभ विवाह* blessing.
+* 🎵 **Trilingual Wedding Melodies:** Interactive floating audio player allowing guests to switch between **Hindi (शाही शहनाई)**, **Telugu (వచ్చిందమ్మా)**, and **Bangla (এলো এলো)** with Google Language indicator (`🌐`).
+* 🕉️ **Traditional Auspicious Shloka & Kalash:** *॥ ॐ श्री गणेशाय नमः ॥* and *शुभ विवाह* blessings.
 * ⏳ **Live Countdown Timer:** Live Days, Hours, Minutes, and Seconds ticking to **1st April 2027, 7:00 PM**.
 * 📜 **Interactive Event Timeline (Celebrations):**
   - **30 March 2027:** Mandapachadan & Matkod (Residence, Toera, Jharkhand)
@@ -28,21 +51,18 @@ Modeled after [Unati & Varish Invitation](https://unatiinvite.vercel.app/) and c
 ## 🚀 How to Run Locally
 
 ### Option 1: Double Click
-Simply double-click `index.html` in your file explorer to open it in any modern browser (Chrome, Edge, Safari, Firefox).
+Double-click `index.html` in your file explorer to open it in any modern browser (Chrome, Edge, Safari, Firefox).
 
 ### Option 2: Local HTTP Server (Recommended for audio & full smoothness)
 In terminal / command prompt:
 ```bash
-cd "C:\Users\Naveen Shekhar\.gemini\antigravity\scratch\naveen-madhu-wedding-invite"
-python -m http.server 8080
+python -m http.server 8000
 ```
-Then open: [http://localhost:8080](http://localhost:8080)
+Then open: [http://localhost:8000](http://localhost:8000)
 
 ---
 
-## 🌐 How to Deploy to Vercel (Free Web Link)
+## 🌐 Live Website & Deployment
 
-You can get a link like `https://naveen-madhu-wedding.vercel.app`:
-1. Go to [vercel.com](https://vercel.com) and log in with GitHub or email.
-2. Drag and drop this folder (`naveen-madhu-wedding-invite`) into the Vercel dashboard, OR push this repository to GitHub and import it on Vercel.
-3. Click **Deploy**. Your wedding invite URL is live in seconds!
+* **Live GitHub Pages URL:** [https://naveenshekhar.github.io/naveen-madhu-wedding/](https://naveenshekhar.github.io/naveen-madhu-wedding/)
+* **Deploy on Vercel:** Import repository `naveenshekhar/naveen-madhu-wedding` on [vercel.com](https://vercel.com) for instant deployment.
