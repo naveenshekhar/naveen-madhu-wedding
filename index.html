@@ -831,9 +831,13 @@ body{font-size:17px}
 .music-btn .slash{opacity:1;transition:opacity .2s}
 .music-btn.on .slash{opacity:0}
 .melody-select-btn{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:6px;padding:0 8px 0 6px;cursor:pointer;font-family:var(--f-body);font-size:0.84rem;font-weight:500;color:#ffe2a6;-webkit-tap-highlight-color:transparent}
+.lang-icon{width:16px;height:16px;color:#ffd88f;flex:none;opacity:.95}
 .melody-name{max-width:115px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .chevron{width:14px;height:14px;opacity:0.75;transition:transform .2s}
 .melody-select-btn[aria-expanded="true"] .chevron{transform:rotate(180deg)}
+.track-title-row{display:flex;align-items:center;gap:6px}
+.lang-icon-sm{width:15px;height:15px;color:#ffd88f;flex:none;opacity:.85}
+.track-native{font-family:var(--f-body);font-size:.82rem;color:rgba(255,216,143,0.85);font-weight:400}
 
 /* Melody Selector Modal */
 .melody-modal{position:fixed;inset:0;z-index:99;display:grid;place-items:center;padding:1rem}
@@ -891,8 +895,9 @@ body{font-size:17px}
       <path d="M9 17.5V5.5l10-2v12"/><circle cx="6.5" cy="17.5" r="2.5" fill="currentColor"/><circle cx="16.5" cy="15.5" r="2.5" fill="currentColor"/><path class="slash" d="M3.5 3.5l17 17"/>
     </svg>
   </button>
-  <button class="melody-select-btn" id="melodySelectBtn" type="button" aria-haspopup="dialog" aria-expanded="false" title="Switch wedding melody">
-    <span class="melody-name" id="melodyNameDisplay">शाही शहनाई</span>
+  <button class="melody-select-btn" id="melodySelectBtn" type="button" aria-haspopup="dialog" aria-expanded="false" title="Switch wedding melody language">
+    <svg class="lang-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+    <span class="melody-name" id="melodyNameDisplay">Hindi</span>
     <svg class="chevron" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
   </button>
 </div>
@@ -1185,20 +1190,23 @@ document.querySelectorAll('[data-orn]').forEach(el=>el.innerHTML=ICON[el.dataset
 const MELODIES = [
   {
     id: "shehnai",
-    title: "शाही शहनाई",
-    tag: "Traditional Auspicious Instrumental (Hindi)",
+    title: "Hindi",
+    native: "शाही शहनाई",
+    tag: "शाही शहनाई · Auspicious Shehnai Instrumental",
     src: "assets/audio/wedding-music.mp3"
   },
   {
     id: "vachindamma",
-    title: "వచ్చిందమ్మా",
-    tag: "Romantic Wedding Song (Telugu)",
+    title: "Telugu",
+    native: "వచ్చిందమ్మా",
+    tag: "వచ్చిందమ్మా · Romantic Wedding Song",
     src: "assets/audio/vachindamma.mp3"
   },
   {
     id: "elo-elo",
-    title: "এলো এলো",
-    tag: "Romantic Wedding Melody (Bengali)",
+    title: "Bangla",
+    native: "এলো এলো",
+    tag: "এলো এলো · Romantic Wedding Melody",
     src: "assets/audio/elo-elo.mp3"
   }
 ];
@@ -1263,7 +1271,11 @@ function renderMelodyTracks() {
   melodyTracksList.innerHTML = MELODIES.map((t, idx) => `
     <button class="track-item ${idx === currentTrackIndex ? 'active' : ''}" type="button" data-idx="${idx}">
       <div class="track-info">
-        <span class="track-title">${esc(t.title)}</span>
+        <div class="track-title-row">
+          <svg class="lang-icon-sm" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+          <span class="track-title">${esc(t.title)}</span>
+          <span class="track-native">(${esc(t.native)})</span>
+        </div>
         <span class="track-tag">${esc(t.tag)}</span>
       </div>
       <div class="track-status-icon">
